@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="name" type="text" placeholder="winter, summer 등 입력">
+    <button onclick="getSeason()">api 요청</button>
+    <script>
+    function getSeason () {
+        // 동일 출처 정책에 의해서 다른 도메인에서는 에러
+        // Access to fetch at 'http://localhost:3000/user/winter' from origin 'null' has been blocked by CORS policy:
+         
+        // cors 문제 해결 방법 : npm install cors 하고 
+        // index.mjs에서 app.use(cors()) 하면 해결된다. 
+         
+        const name = document.querySelector("#name").value;
+        //fetch(`http://localhost:3000/user/winter 가 실제 전송되는 값 
+        fetch(`http://localhost:3000/user/${name}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        })
+    }
+    </script>
+</body>
+</html>
